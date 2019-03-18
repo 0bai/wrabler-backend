@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
 		type: String
 	},
 	messages: [ {
-		type: mongoose.Types.ObjectId,
+		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Message'
 	} ]
 });

@@ -10,12 +10,9 @@ const cors = require('cors');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-<<<<<<< HEAD
-const messagesRouter = require('./routes/messages');
-||||||| merged common ancestors
-=======
 const authRouter = require('./routes/auth');
->>>>>>> authentication
+const messagesRouter = require('./routes/messages');
+
 
 const app = express();
 
@@ -34,7 +31,7 @@ app.use(cors());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/auth', authRouter);
-app.use('/api/user/:id/messages', messagesRouter);
+app.use('/api/users/:id/messages', messagesRouter);
 
 // catch 404 and forward to error handlers
 app.use(function(req, res, next) {

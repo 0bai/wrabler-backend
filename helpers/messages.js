@@ -6,10 +6,11 @@ exports.createMessage = async function (req, res, next) {
 			text: req.body.text,
 			user: req.params.id
 		});
-		let user = db.User.findById(req.params.id);
+		let user = await db.User.findById(req.params.id);
+		//console.log(user);
 		user.messages.push(message.id);
 		await user.save();
-		message.populate('user', {
+		await message.populate('user', {
 			username: true,
 			profileImage: true
 		});
