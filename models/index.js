@@ -9,3 +9,4 @@ mongoose.connect(`mongodb://${process.env.DB_HOST}/warbler`, {
 });
 
 module.exports.User = require('./user');
+module.exports.Message = require('./message');
