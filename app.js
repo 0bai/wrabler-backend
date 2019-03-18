@@ -1,16 +1,21 @@
+//TODO: Remove parameter in deployment
+require('dotenv').config({debug: process.env.DEBUG});
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
-//remove parameter in deployment
-const dotenv = require('dotenv').config({debug: process.env.DEBUG});
 
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+<<<<<<< HEAD
 const messagesRouter = require('./routes/messages');
+||||||| merged common ancestors
+=======
+const authRouter = require('./routes/auth');
+>>>>>>> authentication
 
 const app = express();
 
@@ -28,6 +33,7 @@ app.use(cors());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/api/auth', authRouter);
 app.use('/api/user/:id/messages', messagesRouter);
 
 // catch 404 and forward to error handlers
@@ -40,7 +46,7 @@ app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
+  
   // render the error page
   res.status(err.status || 500);
   res.render('error');
