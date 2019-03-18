@@ -1,11 +1,9 @@
 const mongoose = require('mongoose');
 
 //TODO: Remove in Deployment
-mongoose.set(debug, true);
+mongoose.set('debug', true);
 
 mongoose.Promise = Promise;
-mongoose.connect(`mongodb://${process.env.DB_HOST}/warbler`, {
-	useMongoClient: true
-});
+mongoose.connect(`mongodb://${process.env.DB_HOST}/warbler`, {useNewUrlParser: true, useCreateIndex: true});
 
 module.exports.User = require('./user');
