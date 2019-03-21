@@ -13,5 +13,6 @@
     <orderEntry type="library" name="@types/express" level="application" />
     <orderEntry type="library" name="@types/jsonwebtoken" level="application" />
     <orderEntry type="library" name="@types/dotenv" level="application" />
+    <orderEntry type="library" name="@types/mongodb" level="application" />
   </component>
 </module>

@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
 const {loginRequired, ensureCorrectUser} = require('./middleware/auth');
+const db = require('./models');
 
 
 const indexRouter = require('./routes/index');
@@ -33,6 +34,20 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/users/:id/messages', loginRequired, ensureCorrectUser, messagesRouter);
+
+app.get('/api/messages', loginRequired, async function (req, res, next) {
+	try {
+		let messages = await db.Message.find()
+			.sort({createdAt: 'desc'})
+			.populate('user', {
+				username: true,
+				profileImage: true
+			});
+		return res.status(200).json(messages);
+	} catch (e) {
+		next(e);
+	}
+});
 
 // catch 404 and forward to error handlers
 app.use(function(req, res, next) {

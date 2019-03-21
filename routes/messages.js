@@ -3,9 +3,12 @@ const router = express.Router({mergeParams: true});
 
 const {createMessage, getMessage, deleteMessage} = require('../helpers/messages');
 
-router.route('/').post(createMessage);
-router.route('/').get(getMessage);
-router.route('/').delete(deleteMessage);
+router.route('/')
+	.post(createMessage);
+
+router.route('/:message_id')
+	.get(getMessage)
+	.delete(deleteMessage);
 
 
 module.exports = router;
